@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>心潮 · 把想说的话，交给潮汐</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="ocean-bg" aria-hidden="true">
+    <div class="wave wave-1"></div>
+    <div class="wave wave-2"></div>
+    <div class="wave wave-3"></div>
+  </div>
+
+  <header class="site-header">
+    <a href="#" class="logo">
+      <span class="logo-icon">♥</span>
+      <span class="logo-text">心潮<span class="logo-divider">|</span>潮汐告白</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#how">如何参与</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <button type="button" class="btn btn-ghost btn-sm" id="btnHeaderWrite">写一封信</button>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <p class="hero-tag">For Someone Special</p>
+      <h1 class="hero-title">
+        <span class="line">心意如海</span>
+        <span class="line accent">潮汐推我走向你</span>
+      </h1>
+      <p class="hero-desc">
+        写下你想对 TA 说的话，生成专属链接。<br />
+        在 TA 打开的那一刻，让浪漫缓缓揭晓。
+      </p>
+      <button type="button" class="btn btn-primary btn-lg" id="btnHeroStart">
+        开始写告白
+        <span class="btn-arrow">→</span>
+      </button>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats" aria-label="统计">
+      <div class="stat-card">
+        <span class="stat-num" id="statLetters">0</span>
+        <span class="stat-label">已传递的心意</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num" id="statWords">∞</span>
+        <span class="stat-label">想说的话</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">100%</span>
+        <span class="stat-label">来自真心</span>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section" id="how">
+      <h2 class="section-title">如何参与</h2>
+      <div class="steps">
+        <article class="step-card">
+          <span class="step-num">01</span>
+          <h3>写下你的心意</h3>
+          <p>花几分钟，写下称呼和想说的话。真诚，比华丽的辞藻更重要。</p>
+        </article>
+        <article class="step-card">
+          <span class="step-num">02</span>
+          <h3>生成专属链接</h3>
+          <p>一键复制链接发给 TA。也可以设置「定时揭晓」，到点才能打开。</p>
+        </article>
+        <article class="step-card">
+          <span class="step-num">03</span>
+          <h3>等待潮汐涌来</h3>
+          <p>TA 点开链接，心意缓缓浮现。剩下的，交给你们自己。</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <h2 class="section-title">常见问题</h2>
+      <div class="faq-list" id="faqList">
+        <details class="faq-item">
+          <summary>这是什么？</summary>
+          <p>一个轻量的告白页面工具。你写信、生成链接，对方打开即可看到精心排版的告白内容。无需注册，数据只存在你和对方的浏览器里。</p>
+        </details>
+        <details class="faq-item">
+          <summary>对方会立刻看到吗？</summary>
+          <p>如果你设置了「定时揭晓」，在指定时间之前，对方只能看到倒计时。时间到了，全文才会展开。</p>
+        </details>
+        <details class="faq-item">
+          <summary>我的内容安全吗？</summary>
+          <p>告白内容编码在链接里，不会上传到服务器。请通过私密渠道发送链接，并妥善保管。</p>
+        </details>
+        <details class="faq-item">
+          <summary>不敢迈出第一步怎么办？</summary>
+          <p>可以先写草稿，不必一次写完美。真诚比辞藻更重要——哪怕只有几句话，也值得被听见。</p>
+        </details>
+        <details class="faq-item">
+          <summary>链接丢了怎么办？</summary>
+          <p>请在生成后立即复制保存。本站不存储你的信件，无法找回已生成的链接。</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">♥ 心潮 · 潮汐告白</p>
+    <p class="footer-copy">© 2026 · 愿每一份心意都被温柔接住</p>
+  </footer>
+
+  <!-- Write modal -->
+  <dialog class="modal" id="writeModal">
+    <div class="modal-inner">
+      <button type="button" class="modal-close" id="btnCloseModal" aria-label="关闭">×</button>
+      <h2 class="modal-title">写一封告白信</h2>
+      <p class="modal-sub">这些内容会编码进专属链接，请放心填写。</p>
+
+      <form id="letterForm" class="letter-form">
+        <label class="field">
+          <span>TA 的称呼</span>
+          <input type="text" name="toName" placeholder="例如：小雨" required maxlength="20" />
+        </label>
+        <label class="field">
+          <span>你的署名</span>
+          <input type="text" name="fromName" placeholder="例如：一直在关注你的那个人" required maxlength="30" />
+        </label>
+        <label class="field">
+          <span>想说的话</span>
+          <textarea name="message" rows="6" placeholder="把藏在心里的话，慢慢写下来……" required maxlength="2000"></textarea>
+          <span class="char-count"><span id="charCount">0</span> / 2000</span>
+        </label>
+        <label class="field field-check">
+          <input type="checkbox" name="useReveal" id="useReveal" />
+          <span>设置定时揭晓（到时间才能看到全文）</span>
+        </label>
+        <label class="field field-reveal" id="revealField" hidden>
+          <span>揭晓时间</span>
+          <input type="datetime-local" name="revealAt" id="revealAt" />
+        </label>
+        <label class="field field-check">
+          <input type="checkbox" name="anonymous" />
+          <span>署名显示为「一个在意你的人」</span>
+        </label>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="btnPreview">预览效果</button>
+          <button type="submit" class="btn btn-primary">生成告白链接</button>
+        </div>
+      </form>
+
+      <!-- Result -->
+      <div class="result-panel" id="resultPanel" hidden>
+        <div class="result-success">✦ 链接已生成</div>
+        <p class="result-hint">复制下面链接，用微信或其他方式发给 TA：</p>
+        <div class="link-box">
+          <input type="text" readonly id="generatedLink" />
+          <button type="button" class="btn btn-primary btn-sm" id="btnCopy">复制</button>
+        </div>
+        <a href="#" class="btn btn-ghost btn-block" id="btnOpenPreview" target="_blank">在新标签页预览</a>
+        <button type="button" class="btn btn-ghost btn-block" id="btnWriteAnother">再写一封</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
